@@ -101,7 +101,7 @@ export const App = () => {
         {JSON.stringify(currentGoods) !== JSON.stringify(goodsFromServer) && (
           <button
             type="button"
-            className={cs('button is-danger', { 'is-light': field !== '' })}
+            className={cs('button is-danger', 'is-light')}
             onClick={() => {
               setReversed('');
               setCurrentGoods([...goodsFromServer]);
