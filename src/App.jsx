@@ -23,13 +23,13 @@ const SORT_REVERSE = 'reverse';
 export const App = () => {
   const [currentGoods, setCurrentGoods] = useState([...goodsFromServer]);
   const [field, setField] = useState(null);
-  const [reversed, setReversed] = useState('');
+  const [reversed, setReversed] = useState(false);
 
   function sortingGoods(fieldValue) {
     const sortedGoods = [...currentGoods];
 
     if (fieldValue === SORT_ALPHABETICALLY) {
-      if (reversed === '') {
+      if (reversed === false) {
         sortedGoods.sort((a, b) => a.localeCompare(b));
       } else {
         sortedGoods.sort((a, b) => b.localeCompare(a));
@@ -37,7 +37,7 @@ export const App = () => {
     }
 
     if (fieldValue === SORT_LENGTH) {
-      if (reversed === '') {
+      if (reversed === false) {
         sortedGoods.sort((a, b) => a.length - b.length);
       } else {
         sortedGoods.sort((a, b) => b.length - a.length);
@@ -83,13 +83,13 @@ export const App = () => {
         <button
           type="button"
           className={cs('button is-warning', {
-            'is-light': reversed !== SORT_REVERSE,
+            'is-light': reversed !== true,
           })}
           onClick={() => {
-            if (reversed === '') {
-              setReversed(SORT_REVERSE);
+            if (reversed === false) {
+              setReversed(true);
             } else {
-              setReversed('');
+              setReversed(false);
             }
 
             setCurrentGoods(sortingGoods(SORT_REVERSE));
